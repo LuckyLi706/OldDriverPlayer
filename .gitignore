@@ -1,0 +1,10 @@
+################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/.vs
+/myplayer/obj/
+/myplayer/bin/x86/Debug/videos
+/myplayer/bin/x86/Debug/ErrLog
+/myplayer/bin/x86/Debug/codecs
+/myplayer/.vs
