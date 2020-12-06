@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DMSkin.Controls;
+using myplayer.helpers;
 
 namespace myplayer
 {
@@ -17,20 +18,25 @@ namespace myplayer
         public SettingForm()
         {
             InitializeComponent();
+
+            
+
         }
 
         SolidBrush sb = new SolidBrush(Color.LightCoral);
         protected override void OnPaint(PaintEventArgs e)
         {
             //设置高质量插值法
-            e.Graphics.InterpolationMode = InterpolationMode.Bilinear;
+          //  e.Graphics.InterpolationMode = InterpolationMode.Bilinear;
             //设置高质量,低速度呈现平滑程度
-            e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+         //   e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             //文字抗锯齿
-            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-            e.Graphics.FillRectangle(sb, -1, -1, Width + 30, 30);
-            this.dmTextBox1.Focus();
-            this.dmTextBox1.SelectionLength = 0;
+         //   e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+         //   e.Graphics.FillRectangle(sb, -1, -1, Width + 30, 30);
+          //  this.dmTextBox1.Focus();
+          //  this.dmTextBox1.SelectionLength = 0;
+
+
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
@@ -42,6 +48,11 @@ namespace myplayer
         private void SettingForm_Load(object sender, EventArgs e)
         {
             this.dmTextBox1.Text = Settings.Default.picDir;
+            cb_ordin.SelectedText = Constant.FROM_LAN;
+            cb_goal.SelectedText = Constant.TO_LAN;
+            if (Constant.isCache) {
+                cb_storage.Checked=true;
+            }
         }
 
 
@@ -60,8 +71,8 @@ namespace myplayer
         /// </summary>
         private void btns_MouseEnter(object sender, EventArgs e)
         {
-            DMLabel label = (DMLabel)sender;
-            label.DM_Color = Color.LightPink;
+           // DMLabel label = (DMLabel)sender;
+            //label.DM_Color = Color.LightPink;
         }
 
         /// <summary>
@@ -69,9 +80,24 @@ namespace myplayer
         /// </summary>
         private void btns_MouseLeave(object sender, EventArgs e)
         {
-            DMLabel label = (DMLabel)sender;
-            label.DM_Color = Color.White;
+           // DMLabel label = (DMLabel)sender;
+          //  label.DM_Color = Color.White;
         }
-    
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            //=cb_ordin.SelectedText;
+            
+            Constant.FROM_LAN = cb_ordin.Text;
+            Constant.TO_LAN = cb_goal.Text;
+            if (cb_storage.Checked)
+            {
+                Constant.isCache = true;
+            }
+            else {
+                Constant.isCache = false;
+            }
+            Close();
+        }
     }
 }

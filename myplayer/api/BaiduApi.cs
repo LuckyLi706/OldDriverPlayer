@@ -1,4 +1,5 @@
 ﻿using Baidu.Aip.Speech;
+using myplayer.helpers;
 using myplayer.httprequest;
 using myplayer.utils;
 using Newtonsoft.Json;
@@ -29,7 +30,14 @@ namespace myplayer.api
             {
                 api = new BaiduApi();
                 dic = new Dictionary<string, object>();
-                dic.Add("dev_pid", 1737);
+                if (Constant.FROM_LAN.Equals("auto") || Constant.FROM_LAN.Equals("en"))
+                {
+                    dic.Add("dev_pid", 1737);
+                }
+                else
+                {
+                    dic.Add("dev_pid", 1537);
+                }
             }
             return api;
         }
@@ -58,6 +66,7 @@ namespace myplayer.api
                 }
                 catch (Exception e) {
                     Console.WriteLine(e.Message);
+                    tranText(e.Message, i, captionDic);
                 }
             }
         }

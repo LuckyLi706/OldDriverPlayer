@@ -355,7 +355,7 @@ namespace myplayer
                 player.Close();
             }
             Thread.Sleep(100);
-            if (FileUtil.readSrtFile(video))
+            if (FileUtil.readSrtFile(video)&&Constant.isCache)
             {
                 label2.Visible = false;
                 isTran = false;

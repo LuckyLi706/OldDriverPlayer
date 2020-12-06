@@ -36,5 +36,9 @@ namespace myplayer.helpers
             MoveBegin,
             MoveEnd
         }
+
+        public static String FROM_LAN="auto";
+        public static String TO_LAN = "zh";
+        public static bool isCache = true;
     }
 }
